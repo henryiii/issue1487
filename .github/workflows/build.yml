@@ -10,10 +10,7 @@ on:
 jobs:
 
   build_binary:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-       os: [ubuntu-20.04]
+    runs-on: ubuntu-20.04
 
     steps:
       - uses: actions/checkout@v3
@@ -29,7 +26,14 @@ jobs:
           CIBW_ARCHS_LINUX: auto
           CIBW_TEST_COMMAND: python -c True
 
-      - uses: actions/upload-artifact@v3
+  build_local:
+    runs-on: ubuntu-20.04
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
         with:
-          name: wheelhouse
-          path: ./wheelhouse/*.whl
+          python-version: "3.11"
+          
+      - run: pip install virtualenv

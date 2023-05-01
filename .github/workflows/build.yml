@@ -8,24 +8,6 @@ on:
       - main
 
 jobs:
-
-  build_binary:
-    runs-on: ubuntu-20.04
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: actions/setup-python@v4
-        with:
-          python-version: "3.11"
-
-      - name: Build wheels
-        uses: pypa/cibuildwheel@v2.12.3
-        env:
-          CIBW_SKIP: pp* cp36*
-          CIBW_ARCHS_LINUX: auto
-          CIBW_TEST_COMMAND: python -c True
-
   build_local:
     runs-on: ubuntu-20.04
     
@@ -36,4 +18,4 @@ jobs:
         with:
           python-version: "3.8"
           
-      - run: pip install virtualenv -c constraints.txt
+      - run: pip install virtualenv

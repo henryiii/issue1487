@@ -36,4 +36,4 @@ jobs:
         with:
           python-version: "3.11"
           
-      - run: pip install virtualenv
+      - run: pip install virtualenv -c constraints.txt
